@@ -82,6 +82,7 @@ public final class R {
         public static final int hello_world=0x7f060002;
         public static final int ip_host=0x7f060004;
         public static final int queue_name=0x7f060005;
+        public static final int registered_app=0x7f060009;
         public static final int senha=0x7f060007;
         public static final int title_activity_activity_send_notification=0x7f060003;
         public static final int username=0x7f060006;

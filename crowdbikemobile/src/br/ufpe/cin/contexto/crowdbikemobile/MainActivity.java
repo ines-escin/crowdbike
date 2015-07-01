@@ -14,11 +14,13 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -38,6 +40,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import at.abraxas.amarino.Amarino;
+import br.ufpe.cin.br.adapter.crowdbikemobile.AsyncRegisterEntity;
+import br.ufpe.cin.br.adapter.crowdbikemobile.Attributes;
+import br.ufpe.cin.br.adapter.crowdbikemobile.Entity;
 import br.ufpe.cin.contexto.crowdbikemobile.async.AsyncQueue;
 import br.ufpe.cin.contexto.crowdbikemobile.async.AsyncSendNotification;
 import br.ufpe.cin.contexto.crowdbikemobile.async.AsyncServidor;
@@ -97,6 +102,8 @@ public class MainActivity extends Activity {
 	private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 0; // 1 meters
 	// The minimum time between updates in milliseconds
 	private static final long MIN_TIME_BW_UPDATES = 0;//1000 * 60 * 1; // 1 minute
+	
+	private static final String PREFS_REGISTERED = "Preferences";
 
 	private ConnectionFactory factory = new ConnectionFactory();
 	
@@ -104,13 +111,31 @@ public class MainActivity extends Activity {
 	private LocationListener mlocListener;
 	
 	private String returnQueue = "";
-	
+    
+	private String registered ="";
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_main);
 		txtMensagem = (TextView)findViewById(R.id.txtMensagem);
+		IMEI = getIMEI(this);
+		
+		//Registra app no OrionCB
+		//Restaura as preferencias gravadas
+        SharedPreferences settings = getSharedPreferences(PREFS_REGISTERED, 0);
+        registered =  settings.getString("Registered", "");
+	 //   if (registered != "1") {
+			//Chama a função de registrar ocorrencia
+             AsyncRegisterEntity asyncRegisterEntity = new AsyncRegisterEntity(this);
+             asyncRegisterEntity.execute(IMEI);
+	    	 settings = getSharedPreferences(PREFS_REGISTERED, 0);
+	         SharedPreferences.Editor editor = settings.edit();
+	         editor.putString("Registered", "");
+	         editor.putString("Registered", "1");
+	         //Confirma a gravação dos dados
+	         editor.commit();
+		//}
 		
 		//Conectando ao arduíno
 		Amarino.connect(this, DEVICE_ADDRESS);
@@ -119,7 +144,7 @@ public class MainActivity extends Activity {
 
 		inicializarListenerGPS();
 
-		IMEI = getIMEI(this);
+		
 		Toast.makeText(this, "O IMEI é: " + IMEI, Toast.LENGTH_LONG).show();
 
 		//Setando a cor de fundo. Padrão: verde
@@ -129,7 +154,7 @@ public class MainActivity extends Activity {
         tarefaParalelaTempo();
 		
 		//Executando tarefas paralelas
-		tarefasParalelas();
+	//	tarefasParalelas();
 
 		//Necessário para usar Runable na activity?
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -326,10 +351,11 @@ public class MainActivity extends Activity {
 		return result;
 
 	}
-
 	
 	
-	/*
+	
+	
+  	/*
 	 * ########################################################################
 	 * ########################################################################
 	 *  Os seguintes métodos estão relacionados às AsyncTasks e seus retornos
