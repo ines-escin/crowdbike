@@ -1,0 +1,23 @@
+package br.ufpe.cin.br.adapter.tests;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class AsyncRegisterEntityTest {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+		
+		
+		
+    String s = "{ \"type\" : \"Position\",\"isPattern\" : \"false\", " +
+    		"\"id\" : \"358972063059834\",\"contextResponses\" : " +
+    		"[{\"attributes\" : [{\"name\" : \"latitude\",\"type\" : " +
+    		"\"String\",\"value\" : \"\"},{\"name\" : \"longitude\"," +
+    		"\"type\" : \"String\",\"value\" : \"\"}],\"statusCode\" : " +
+    		"{\"code\" : \"200\",\"reasonPhrase\" : \"OK\"}}]}";
+ 
+	}
+}

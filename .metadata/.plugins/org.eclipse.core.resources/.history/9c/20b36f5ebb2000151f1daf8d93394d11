@@ -1,0 +1,8 @@
+package com.example.crowdbikemobile.test;
+
+import br.ufpe.cin.contexto.crowdbikemobile.MainActivity;
+import android.test.ActivityInstrumentationTestCase2;
+
+public class MainActivityTest extends ActivityInstrumentationTestCase2<MainActivity>{
+
+}

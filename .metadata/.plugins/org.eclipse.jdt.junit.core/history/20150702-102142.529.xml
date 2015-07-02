@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="TestRegisterEntity" project="CrowdbikemobileTest" tests="1" started="1" failures="1" errors="0" ignored="0">
+  <testsuite name="motorola-motoe2_4g_lte_-0012780276" time="0.062">
+    <testsuite name="junit.framework.TestSuite.1" time="0.062">
+      <testcase name="warning " classname="junit.framework.TestSuite.1" time="0.062">
+        <failure>junit.framework.AssertionFailedError: Class com.example.crowdbikemobile.test.TestRegisterEntity has no public constructor TestCase(String name) or TestCase()&#13;
+at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:191)&#13;
+at android.test.AndroidTestRunner.runTest(AndroidTestRunner.java:176)&#13;
+at android.test.InstrumentationTestRunner.onStart(InstrumentationTestRunner.java:555)&#13;
+at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:1928)&#13;
+&#13;
+</failure>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testrun>
