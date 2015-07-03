@@ -1,0 +1,92 @@
+package com.software.project.cep.handler;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.Init;
+
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import com.espertech.esper.client.Configuration;
+import com.espertech.esper.client.EPServiceProvider;
+import com.espertech.esper.client.EPServiceProviderManager;
+import com.espertech.esper.client.EPStatement;
+import com.software.project.cep.subscribe.StatementSubscriber;
+import com.software.project.entities.BikePosition;
+import com.software.project.entities.VehiclePosition;
+
+@Component
+@Scope(value = "singleton")
+public class PositionEventHandler implements InitializingBean{
+
+ 
+   
+    /** Esper service */
+    private EPServiceProvider epService;
+    private EPStatement monitorEventStatement;
+    private EPStatement monitorEventVehicleStatement;
+    int i = 0;
+
+    @Autowired
+    @Qualifier("monitorEventSubscriber")
+    private StatementSubscriber monitorEventSubscriber;
+  
+    @Autowired
+    @Qualifier("monitorEventVehicle")
+    private StatementSubscriber monitorEventVehicle; 
+    
+    /**
+     * Configure Esper Statement(s).
+     */
+
+    public void  initService() {
+        Configuration config = new Configuration();
+        config.addEventTypeAutoName("com.software.project.entities");
+        epService = EPServiceProviderManager.getDefaultProvider(config);
+        createVehicleRequestMonitorExpression();
+        createBikeRequestMonitorExpression();
+
+    }
+
+    private void createBikeRequestMonitorExpression() {
+
+        //LOG.debug("create Timed Average Monitor");
+        monitorEventStatement = epService.getEPAdministrator().createEPL(monitorEventSubscriber.getStatement());
+		monitorEventStatement.setSubscriber(monitorEventSubscriber);
+	}
+    
+	private void createVehicleRequestMonitorExpression() {
+		        epService.getEPAdministrator().destroyAllStatements();
+		    	monitorEventVehicleStatement = epService.getEPAdministrator().createEPL(monitorEventVehicle.getStatement());
+		    	monitorEventVehicleStatement = epService.getEPAdministrator().createEPL("insert into Vehicle (imei,lat,lng)  Select imei,lat,lng From VehiclePosition");
+		    	monitorEventVehicleStatement.setSubscriber(monitorEventVehicle);	
+	}
+
+    /**
+     * Handle the incoming BikePositionEvent.
+     */
+    public void handleBikePosition(BikePosition event) {
+
+      //  LOG.debug(event.toString());
+        epService.getEPRuntime().sendEvent(event);
+
+    }
+    
+    /**
+     * Handle the incoming vehiclePositionEvent.
+     */
+    public void handleVehiclePosition(VehiclePosition event) {
+
+      //  LOG.debug(event.toString());
+        epService.getEPRuntime().sendEvent(event);
+
+    }
+    @Override
+    public void afterPropertiesSet() {
+        
+       // LOG.debug("Configuring..");
+        initService();
+    }
+}

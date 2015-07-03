@@ -1,0 +1,15 @@
+package com.software.project.amqp;
+
+import java.io.IOException;
+
+import org.springframework.amqp.core.MessageListener;
+
+public interface MessageQueueManager extends MessageListener{
+
+	 String createQueue(String queueName) throws IOException;
+	 
+	 void sendMessage(String message, String destinationQueueName) throws Exception;
+
+	void Consume(String endPointName) throws IOException;
+
+}

@@ -1,0 +1,92 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.primefaces.json.JSONArray;
+import org.primefaces.model.map.LatLng;
+import org.primefaces.model.map.MapModel;
+import org.primefaces.model.map.Polygon;
+import org.primefaces.model.map.Polyline;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.software.project.amqp.MessageQueueManager;
+import com.software.project.amqp.MessageQueueManagerImpl;
+import com.software.project.util.ApplicationContextProvider;
+
+
+public class Teste {
+		MapModel advancedModel;  
+	    String EstMultiPoligono;
+	    List<String> listaPoligonos = new ArrayList<String>();
+	    String EstPoligono;
+	    String EstPoligonoTemporal;
+	    LatLng coord;
+	    Polygon polygon = new Polygon();
+	    String arrayLatLng ="";
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+        new Teste().mapaMultiPoligono("C://TEMP//output.txt");	
+		
+	}
+	private void mapaMultiPoligono(String s) throws IOException {
+		// TODO Auto-generated method stub
+		
+		
+		 BufferedReader br = new BufferedReader(new FileReader(s));
+		 try {
+		 String line = br.readLine();
+		 while (line != null) 
+		 {
+		 line = br.readLine();
+		 if(line!=null) {
+	       String loc = line.toString();
+	       if(loc.indexOf("[ [ ")!=-1){
+	       EstMultiPoligono = loc.substring(loc.indexOf("[ [ "), loc.indexOf("] } }"));
+	       EstPoligono =  EstMultiPoligono.substring(2, EstMultiPoligono.length() -1);
+	       
+	       listaPoligonos = new ArrayList<String>();
+	       while(EstPoligono.indexOf("[ ")!= -1)
+	       {
+	    	   EstPoligonoTemporal = EstPoligono.substring(2,EstPoligono.indexOf(" ]")-5);
+	    	   listaPoligonos.add(EstPoligonoTemporal);
+	    	   EstPoligono = EstPoligono.substring(EstPoligono.indexOf(", [")+2,EstPoligono.length());
+	       }
+	       listaPoligonos.add(EstPoligonoTemporal);
+	    
+	       
+	       Polyline polyline = new Polyline();
+	       double lat;
+	       double lng;
+	       for(String poligonoLista : listaPoligonos)
+	       {
+	    	   lat = Double.valueOf(poligonoLista.substring(0, poligonoLista.indexOf(",")));
+	    	   lng = Double.valueOf(poligonoLista.substring(poligonoLista.indexOf(",")+1,poligonoLista.length()));
+	    	   //inverted because jsonarray is wrong!
+	           polyline.getPaths().add(new LatLng(lng,lat));
+	       }
+		 arrayLatLng = new JSONArray(polyline.getPaths(), true).toString();
+	     System.out.println(arrayLatLng);
+	     
+	     //  advancedModel.addOverlay(polyline);
+	      // RequestContext context = RequestContext.getCurrentInstance();
+	      // context.addCallbackParam("paths", new JSONArray(polyline.getPaths(), true).toString());
+	    /*   setArrayLatLng(new JSONArray(polyline.getPaths(), true).toString());
+	       context.execute("updateCaminho();");*/
+	       
+	       }
+			 }
+ 
+	     }
+	 } finally {
+	     br.close();
+	 }
+		  
+	}
+	
+}
