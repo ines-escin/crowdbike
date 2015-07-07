@@ -1,0 +1,7 @@
+1436217381356	Encapsulate field 'title'
+1436217687848	Rename type 'IResourceEntity'
+1436218105391	Rename type 'IEntityResource'
+1436218123005	Rename type 'EntityResource'
+1436218230413	Move compilation unit
+1436218236457	Move compilation unit
+1436218262239	Rename type 'IPersistenceEntity'

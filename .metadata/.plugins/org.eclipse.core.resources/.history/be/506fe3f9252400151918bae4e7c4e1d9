@@ -1,0 +1,5 @@
+package com.software.project.service.rest.resource;
+
+public class EntityResource {
+
+}

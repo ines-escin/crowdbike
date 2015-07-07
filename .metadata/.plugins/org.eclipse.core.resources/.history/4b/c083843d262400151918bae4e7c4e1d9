@@ -1,0 +1,30 @@
+package com.software.project.service.rest.resource;
+
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
+import com.software.project.entities.Entity;
+
+public class PersistenceEntityWS implements IPersistenceEntity {
+    
+	private Gson gson;
+	
+	@Override
+	public ArrayList<Entity> getAllEntities() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void createEntity(Entity entity) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteEntity(Entity entity) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

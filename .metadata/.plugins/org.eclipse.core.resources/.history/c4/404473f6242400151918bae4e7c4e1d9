@@ -1,0 +1,12 @@
+package com.software.project.service.rest.resource;
+
+import java.util.ArrayList;
+
+import com.software.project.entities.Entity;
+
+public interface IResourceEntity {
+	public ArrayList<Entity> getAllEntities() throws Exception;
+	public void createEntity(Entity entity) throws Exception;
+	public void deleteEntity(Entity entity) throws Exception ;
+
+}
