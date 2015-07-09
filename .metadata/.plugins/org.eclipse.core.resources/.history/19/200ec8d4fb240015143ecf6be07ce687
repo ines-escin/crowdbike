@@ -1,0 +1,5 @@
+package com.software.project.service.adapter;
+
+public class StatusCode {
+
+}

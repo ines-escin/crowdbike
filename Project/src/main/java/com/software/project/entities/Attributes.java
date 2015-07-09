@@ -2,10 +2,17 @@ package com.software.project.entities;
 
 public class Attributes {
     
-	private String title; 
 	private String name;
 	private String type;
 	private String value;
+	
+
+	public Attributes(String name, String type, String value) {
+		super();
+		this.name = name;
+		this.type = type;
+		this.value = value;
+	}
 
 	public Attributes() {
 		super();
@@ -36,12 +43,5 @@ public class Attributes {
 		this.value = value;
 	}
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
 
 }
