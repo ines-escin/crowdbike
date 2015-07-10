@@ -13,9 +13,9 @@ public interface PersistenceEntity {
     public List<Entity> getById(Long id) throws Exception;
 	public Entity findById(Long id);
 	public Entity getByLatLng(double lat, double lng);
-	public Long countEntity();
+	public Long countEntity() throws Exception;
 	public void deleteById(Long id) throws Exception;
-	public Long countEntityByTitle(String title);
+	public Long countEntityByType(String title) throws Exception;
 	
 
 }

@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 
 import com.software.project.entities.Ocorrencia;
 import com.software.project.service.OcorrenciaBO;
+import com.software.project.service.adapter.PersistenceEntity;
+import com.software.project.service.adapter.PersistenceEntityWS;
 
 @Controller("mapBean")
 @Scope("view")
@@ -32,6 +34,8 @@ public class MapBean implements Serializable {
     
     @Autowired
     OcorrenciaBO ocorrenciaBO;
+    @Autowired
+    PersistenceEntity persistenceEntity;
   
     
     public MapBean() {  

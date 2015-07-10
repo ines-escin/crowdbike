@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
+import com.software.project.entities.Attributes;
 import com.software.project.entities.Entity;
 
 @Service("PersistenceEntity")
@@ -29,7 +30,6 @@ public class PersistenceEntityWS implements PersistenceEntity {
 	private String result = "";  
 	private String line = "";
 	private HttpClient client;
-
 	private HttpResponse response;
 	private BufferedReader rd;
 
@@ -86,10 +86,10 @@ public class PersistenceEntityWS implements PersistenceEntity {
 			e.printStackTrace();
 		}
 	
-	   ContextResponses cr = AdapterOcurrence.toContextResponses(result);
+		List<Entity> contextElement = AdapterOcurrence.parseListEntity(result);
 		
 		// TODO Auto-generated method stub
-		return cr.getContextElement();
+		return contextElement;
 	}
 
 	@Override
@@ -111,9 +111,10 @@ public class PersistenceEntityWS implements PersistenceEntity {
 	}
 
 	@Override
-	public Long countEntity() {
+	public Long countEntity() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		int count = getAll().size();
+		return Long.parseLong(String.valueOf(count));
 	}
 
 	@Override
@@ -143,8 +144,17 @@ public class PersistenceEntityWS implements PersistenceEntity {
 	}
 
 	@Override
-	public Long countEntityByTitle(String title) {
+	public Long countEntityByType(String title) throws Exception {
 		// TODO Auto-generated method stub
+		int count = 0;
+		List<Entity> l = getAll();
+		for (Entity entity : l) {
+			for (Attributes att : entity.getAttributes()) {
+				if (title.equalsIgnoreCase(att.getValue()) && att.getName().equalsIgnoreCase("title")) {
+					count++;
+				}
+			}
+		}
 		return null;
 	}
 	

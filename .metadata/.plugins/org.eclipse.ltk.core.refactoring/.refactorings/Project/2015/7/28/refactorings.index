@@ -13,3 +13,8 @@
 1436309968438	Encapsulate field 'reasonPhrase'
 1436310056771	Encapsulate field 'statusCode'
 1436310544074	Rename type 'ResponseWS'
+1436509457580	Delete element
+1436509480473	Delete element
+1436556850905	Delete element
+1436565203171	Rename type 'TestPersistenceEntityWS'
+1436565571495	Move compilation units
