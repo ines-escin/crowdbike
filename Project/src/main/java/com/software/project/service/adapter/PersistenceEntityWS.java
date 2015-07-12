@@ -2,6 +2,7 @@ package com.software.project.service.adapter;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,30 +20,31 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.gson.Gson;
 import com.software.project.entities.Attributes;
 import com.software.project.entities.Entity;
+import com.software.project.entities.Ocorrencia;
 
 @Service("PersistenceEntity")
 @Transactional(propagation=Propagation.REQUIRED)
 public class PersistenceEntityWS implements PersistenceEntity {
     
 	private Gson gson;
-	private String uri = "http://148.6.80.19:1026/v1/contextEntities";
 	private int responseCode = 0;
-	private String result = "";  
 	private String line = "";
 	private HttpClient client;
 	private HttpResponse response;
 	private BufferedReader rd;
 
 	@Override
-	public void createNew(Entity entity) throws Exception {
+	public void createNew(Ocorrencia ocurrence) throws Exception {
 		// TODO Auto-generated method stub	
 		try {
-			uri += "/" +entity.getId();
+			String uri = "http://148.6.80.19:1026/v1/contextEntities";
+			uri += "/" +ocurrence.getIdOcorrencia();
 			client = new DefaultHttpClient();
+			String result = "";
 			HttpPost httppost = new HttpPost(uri);
 		    httppost.setHeader("Accept", "application/json");
 			gson = new Gson();
-			StringEntity entityPost = new StringEntity(gson.toJson(entity));
+			StringEntity entityPost = new StringEntity(gson.toJson(AdapterOcurrence.toEntity(ocurrence)));
 			entityPost.setContentType("application/json");
 			httppost.setEntity(entityPost);
 			int executeCount = 0;
@@ -63,10 +65,11 @@ public class PersistenceEntityWS implements PersistenceEntity {
 	}
 
 	@Override
-	public List<Entity> getAll() throws Exception {
-	
+	public List<Ocorrencia> getAll() throws Exception {
+		String result = "";
 		try {
 			client = new DefaultHttpClient();
+			String uri = "http://148.6.80.19:1026/v1/contextEntities";
 			HttpGet httpget = new HttpGet(uri);
 		    httpget.setHeader("Accept", "application/json");		
 		    httpget.setHeader("Content-type", "application/json");
@@ -87,33 +90,72 @@ public class PersistenceEntityWS implements PersistenceEntity {
 		}
 	
 		List<Entity> contextElement = AdapterOcurrence.parseListEntity(result);
+		List<Ocorrencia> ocurrences = new ArrayList<Ocorrencia>();
+		for (Entity entity : contextElement) {
+			ocurrences.add(AdapterOcurrence.toOcurrence(entity));
+		}
 		
 		// TODO Auto-generated method stub
-		return contextElement;
+		return ocurrences;
 	}
 
 	@Override
-	public List<Entity> getById(Long id) throws Exception {
+	public List<Ocorrencia> getById(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Entity findById(Long id) {
+	public Ocorrencia findById(Long id) throws ParseException {
+		// TODO Auto-generated method stub
+		String uri = "http://148.6.80.19:1026/v1/contextEntities/"+String.valueOf(id);
+		int responseCode = 0;
+		String result = "";  
+		String line = "";
+		HttpClient client;
+
+		try {
+			client = new DefaultHttpClient();
+			HttpGet httpget = new HttpGet(uri);
+		    httpget.setHeader("Accept", "application/json");		
+		    httpget.setHeader("Content-type", "application/json");
+		    HttpResponse response;
+			BufferedReader rd;
+
+			int executeCount = 0;
+			do {
+				executeCount++;
+				response = client.execute(httpget);
+				responseCode = response.getStatusLine().getStatusCode();						
+			} while (executeCount < 5 && responseCode == 408);
+			      rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+			while ((line = rd.readLine()) != null){
+				result += line.trim();
+			}	      
+		} catch (Exception e) {
+			responseCode = 408;
+			e.printStackTrace();
+		}
+
+		return AdapterOcurrence.toOcurrence(AdapterOcurrence.parseEntity(result));
+	}
+
+	@Override
+	public Ocorrencia getByLatLng(double lat, double lng) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Entity getByLatLng(double lat, double lng) {
+	public Long countOcorrencia() throws Exception {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Long countEntity() throws Exception {
-		// TODO Auto-generated method stub
-		int count = getAll().size();
+		int count = 0;
+		List<Ocorrencia> l = getAll();
+		for (int i = 0; i < l.size(); i++) {
+			if(l.get(i)!=null){
+				count++;
+			}
+		}
 		return Long.parseLong(String.valueOf(count));
 	}
 
@@ -121,8 +163,10 @@ public class PersistenceEntityWS implements PersistenceEntity {
 	public void deleteById(Long id) throws Exception {
 		// TODO Auto-generated method stub
 		try {
+			String uri = "http://148.6.80.19:1026/v1/contextEntities";
 			uri += "/" +String.valueOf(id);
 			client = new DefaultHttpClient();
+			String result = "";
 			HttpDelete httpdelete = new HttpDelete(uri);
 			httpdelete.setHeader("Accept", "application/json");
 			httpdelete.setHeader("Content-type", "application/json");
@@ -144,20 +188,30 @@ public class PersistenceEntityWS implements PersistenceEntity {
 	}
 
 	@Override
-	public Long countEntityByType(String title) throws Exception {
+	public Long countOcorrenciaByType(String title) throws Exception {
 		// TODO Auto-generated method stub
 		int count = 0;
-		List<Entity> l = getAll();
-		for (Entity entity : l) {
-			for (Attributes att : entity.getAttributes()) {
-				if (title.equalsIgnoreCase(att.getValue()) && att.getName().equalsIgnoreCase("title")) {
-					count++;
-				}
+		List<Ocorrencia> l = getAll();
+		for (int i = 0; i < l.size(); i++) {
+			if(l.get(i).getTitle()!=null && l.get(i).getTitle().equalsIgnoreCase(title)){
+				count++;
 			}
 		}
-		return null;
+					
+		return Long.valueOf(String.valueOf(count));
 	}
-	
-	
+
+	@Override
+	public List<Ocorrencia> getByUserId(Long id) throws Exception {
+		// TODO Auto-generated method stub
+		List<Ocorrencia> l = getAll();
+		List<Ocorrencia> userOcurrences = new ArrayList<Ocorrencia>();
+		for (int i = 0; i < l.size(); i++) {
+			if(l.get(i)!=null && l.get(i).getUser().getId() == id){
+				userOcurrences.add(l.get(i));
+			}
+		}
+		return userOcurrences;
+	}	
 
 }

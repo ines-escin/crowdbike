@@ -11,9 +11,15 @@ import java.util.List;
 
 
 
+
+import java.util.UUID;
+
+import org.hibernate.ejb.criteria.expression.function.TrimFunction;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+
 
 
 
@@ -40,6 +46,7 @@ public class AdapterOcurrence {
     	
     	e.setId(String.valueOf(o.getIdOcorrencia()));
     	e.setType("Ocurrence");
+    	e.setAttributes(aList);
 
 		return e;
 		
@@ -105,16 +112,27 @@ public class AdapterOcurrence {
     public static List<Entity> parseListEntity(String s) throws Exception {
 		List<Entity> listEntity = new ArrayList<Entity>();
 		JSONParser jsonParser = new JSONParser();
-		JSONObject jsonObject = (JSONObject) jsonParser.parse(s);
+		JSONObject jsonObject = (JSONObject) jsonParser.parse(s.trim());
 		JSONArray lang = (JSONArray) jsonObject.get("contextResponses");
-		Iterator i = lang.iterator();
-		// take each value from the json array separately
-		while (i.hasNext()) {
-			JSONObject innerObj = (JSONObject) i.next();
-			if(innerObj != null)
-			listEntity.add(AdapterOcurrence.parseEntity(innerObj.toString()));
+		if(lang != null){
+			Iterator i = lang.iterator();
+			// take each value from the json array separately
+		    while (i.hasNext()) {
+				JSONObject innerObj = (JSONObject) i.next();
+				if(innerObj != null)
+				listEntity.add(AdapterOcurrence.parseEntity(innerObj.toString()));
+			}
 		}
 		return listEntity;
 
+    }
+    
+    public static long generateUniqueId() {      
+        UUID idOne = UUID.randomUUID();
+        String str=""+idOne;        
+        int uid=str.hashCode();
+        String filterStr=""+uid;
+        str=filterStr.replaceAll("-", "");
+        return Long.valueOf(str);
     }
 }

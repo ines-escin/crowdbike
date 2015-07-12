@@ -1,5 +1,6 @@
 package com.software.project.beans;
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -32,8 +33,8 @@ public class MapBean implements Serializable {
     private String qtdOcorrencias;
     private PieChartModel pieModel;  
     
-    @Autowired
-    OcorrenciaBO ocorrenciaBO;
+   /* @Autowired
+    OcorrenciaBO ocorrenciaBO;*/
     @Autowired
     PersistenceEntity persistenceEntity;
   
@@ -46,8 +47,8 @@ public class MapBean implements Serializable {
     @PostConstruct
     public void init() throws Exception{
     	
-    	qtdOcorrencias = String.valueOf(ocorrenciaBO.countOcorrencia());
-    	ocorrencias = ocorrenciaBO.getAll();
+    	qtdOcorrencias = String.valueOf(persistenceEntity.countOcorrencia());
+    	ocorrencias = persistenceEntity.getAll();
         if(ocorrencias.size()>0) {
          	 for (Ocorrencia ocorrencia : ocorrencias) {
              	  marker = new Marker(new LatLng(Double.valueOf(ocorrencia.getLat()), Double.valueOf(ocorrencia.getLng())), String.valueOf(ocorrencia.getIdOcorrencia()));  
@@ -59,19 +60,19 @@ public class MapBean implements Serializable {
     }
     
     
-	private void createPieModel() {  
+	private void createPieModel() throws Exception {  
         pieModel = new PieChartModel();  
   
-        pieModel.set("CPA", ocorrenciaBO.countOcorrenciaByType("CPA"));  
-        pieModel.set("COVP",  ocorrenciaBO.countOcorrenciaByType("COVP"));  
-        pieModel.set("CVM2-3R", ocorrenciaBO.countOcorrenciaByType("CVM2-3R"));  
-        pieModel.set("CACC",  ocorrenciaBO.countOcorrenciaByType("CACC")); 
-        pieModel.set("CTPO",  ocorrenciaBO.countOcorrenciaByType("CTPO"));
-        pieModel.set("CTVF",  ocorrenciaBO.countOcorrenciaByType("CTVF"));
-        pieModel.set("COVNM",  ocorrenciaBO.countOcorrenciaByType("COVNM"));
-        pieModel.set("COFE",  ocorrenciaBO.countOcorrenciaByType("COFE"));
-        pieModel.set("ANDT",  ocorrenciaBO.countOcorrenciaByType("ANDT"));
-        pieModel.set("AI",  ocorrenciaBO.countOcorrenciaByType("AI"));
+        pieModel.set("CPA", persistenceEntity.countOcorrenciaByType("CPA"));  
+        pieModel.set("COVP",  persistenceEntity.countOcorrenciaByType("COVP"));  
+        pieModel.set("CVM2-3R", persistenceEntity.countOcorrenciaByType("CVM2-3R"));  
+        pieModel.set("CACC",  persistenceEntity.countOcorrenciaByType("CACC")); 
+        pieModel.set("CTPO",  persistenceEntity.countOcorrenciaByType("CTPO"));
+        pieModel.set("CTVF",  persistenceEntity.countOcorrenciaByType("CTVF"));
+        pieModel.set("COVNM",  persistenceEntity.countOcorrenciaByType("COVNM"));
+        pieModel.set("COFE",  persistenceEntity.countOcorrenciaByType("COFE"));
+        pieModel.set("ANDT",  persistenceEntity.countOcorrenciaByType("ANDT"));
+        pieModel.set("AI",  persistenceEntity.countOcorrenciaByType("AI"));
     }  
     
 	
@@ -80,9 +81,9 @@ public class MapBean implements Serializable {
         return advancedModel;  
     }  
       
-    public void onMarkerSelect(OverlaySelectEvent event) {  
+    public void onMarkerSelect(OverlaySelectEvent event) throws NumberFormatException, ParseException {  
         marker = (Marker) event.getOverlay();  
-        ocorrenciaSelected = ocorrenciaBO.findById(Long.parseLong(marker.getTitle()));
+        ocorrenciaSelected = persistenceEntity.findById(Long.parseLong(marker.getTitle()));
     }  
       
     public Marker getMarker() {  

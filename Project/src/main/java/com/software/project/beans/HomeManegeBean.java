@@ -23,6 +23,8 @@ import org.springframework.stereotype.Controller;
 import com.software.project.entities.Ocorrencia;
 import com.software.project.service.LoginService;
 import com.software.project.service.OcorrenciaBO;
+import com.software.project.service.adapter.AdapterOcurrence;
+import com.software.project.service.adapter.PersistenceEntity;
 
 
 @Controller("homeManageBean")
@@ -49,8 +51,10 @@ public class HomeManegeBean {
 	    private List<Ocorrencia> ocorrencias;
 	    
 	    
+	    /* @Autowired
+	    OcorrenciaBO ocorrenciaBO;*/
 	    @Autowired
-	    OcorrenciaBO ocorrenciaBO;
+	    PersistenceEntity persistenceEntity;
 	    
 	    @Resource
 		private LoginService loginservice;
@@ -63,7 +67,7 @@ public class HomeManegeBean {
 	    @PostConstruct
 	    public void init() throws Exception{
 			
-			ocorrencias = ocorrenciaBO.getByUserId(loginservice.getUser().getId());
+			ocorrencias = persistenceEntity.getByUserId(loginservice.getUser().getId());
 			
 	        if(ocorrencias.size()>0) {
 	         	 for (Ocorrencia ocorrencia : ocorrencias) {
@@ -88,7 +92,7 @@ public class HomeManegeBean {
 	    }  
 	    
 	    public void deleteMarcador() throws NumberFormatException, Exception{   
-	        ocorrenciaBO.deleteById("idOcorrencia",idDelete);  
+	    	persistenceEntity.deleteById(idDelete);  
 	        emptyModel.getMarkers().remove(marker);
 	    } 
 	    
@@ -131,13 +135,14 @@ public class HomeManegeBean {
 		}
 
 		public void addMarker(ActionEvent actionEvent) throws Exception {  
+			ocorrencia.setIdOcorrencia(AdapterOcurrence.generateUniqueId());
 	        ocorrencia.setEndereco(endereco);
 	        ocorrencia.setLat(lat);
 	        ocorrencia.setLng(lng);
 	        ocorrencia.setTitle(title.toUpperCase());
 	        ocorrencia.setUser(loginservice.getUser());
 	        ocorrencia.setDataOcorrencia(date1);
-	        ocorrenciaBO.createNew(ocorrencia);  
+	        persistenceEntity.createNew(ocorrencia);  
 	        Marker marker = new Marker(new LatLng(Double.valueOf(lat), Double.valueOf(lng)), title, ocorrencia); 
 	        emptyModel.addOverlay(marker);
 	        ocorrencia = new Ocorrencia();

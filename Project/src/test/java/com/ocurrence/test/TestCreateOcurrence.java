@@ -43,12 +43,12 @@ public class TestCreateOcurrence {
 	public void testCreateNew() throws JSONException {
 		  String result = "";  
 			String line = "";
-			String id = String.valueOf("358");
+			String id = String.valueOf("359");
 		    Entity entity = new Entity();
 			List<Attributes> attributes = new ArrayList<Attributes>();
-			attributes.add(new Attributes("title", "String", "Ocurrence"));
-			attributes.add(new Attributes("lat","String","40.418889"));
-			attributes.add(new Attributes("lng","String","-3.691944"));
+			attributes.add(new Attributes("title", "String", "CPA"));
+			attributes.add(new Attributes("lat","String","-8.057205964543307"));
+			attributes.add(new Attributes("lng","String","-34.87112045288086"));
 			attributes.add(new Attributes("endereco", "String", "Endereco de minha casa"));
 			attributes.add(new Attributes("dataOcorrencia", "String",AdapterOcurrence.df.format(Calendar.getInstance().getTime()))); 
 			attributes.add(new Attributes("userId", "String", "1")); 

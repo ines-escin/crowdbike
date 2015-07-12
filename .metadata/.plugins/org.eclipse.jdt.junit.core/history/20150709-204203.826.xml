@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="TestPersistenceEntityWS" project="Project" tests="2" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="TestPersistenceEntityWS" incomplete="true">
-    <testcase name="getAll" classname="TestPersistenceEntityWS" incomplete="true"/>
-    <testcase name="getById" classname="TestPersistenceEntityWS" incomplete="true"/>
-  </testsuite>
-</testrun>
