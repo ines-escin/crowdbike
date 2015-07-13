@@ -15,7 +15,9 @@
 <fullyQualifiedTypeName name="org.apache.http.HttpResponse"/>
 <fullyQualifiedTypeName name="org.json.JSONException"/>
 <fullyQualifiedTypeName name="org.skyscreamer.jsonassert.JSONAssert"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="com.software.project.service.adapter.AdapterOcurrence"/>
 <fullyQualifiedTypeName name="com.software.project.entities.Ocorrencia"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="com.software.project.entities.adapter.Metadata"/>
 </qualifiedTypeNameHistroy>

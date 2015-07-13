@@ -4,8 +4,8 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.software.project.entities.Entity;
 import com.software.project.entities.Ocorrencia;
+import com.software.project.entities.adapter.Entity;
 
 public interface PersistenceEntity {
 	

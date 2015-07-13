@@ -28,8 +28,9 @@ import com.google.gson.Gson;
 import java.lang.reflect.Type;
 
 import com.google.gson.reflect.TypeToken;
-import com.software.project.entities.Attributes;
-import com.software.project.entities.Entity;
+import com.software.project.entities.adapter.Attributes;
+import com.software.project.entities.adapter.Entity;
+import com.software.project.entities.adapter.Metadata;
 import com.software.project.service.adapter.AdapterOcurrence;
 
 
@@ -43,15 +44,16 @@ public class TestCreateOcurrence {
 	public void testCreateNew() throws JSONException {
 		  String result = "";  
 			String line = "";
-			String id = String.valueOf("359");
+			String id = String.valueOf("66960489");
 		    Entity entity = new Entity();
 			List<Attributes> attributes = new ArrayList<Attributes>();
-			attributes.add(new Attributes("title", "String", "CPA"));
-			attributes.add(new Attributes("lat","String","-8.057205964543307"));
-			attributes.add(new Attributes("lng","String","-34.87112045288086"));
-			attributes.add(new Attributes("endereco", "String", "Endereco de minha casa"));
-			attributes.add(new Attributes("dataOcorrencia", "String",AdapterOcurrence.df.format(Calendar.getInstance().getTime()))); 
-			attributes.add(new Attributes("userId", "String", "1")); 
+			attributes.add(new Attributes("title", "String", "CPA", null));
+			List<Metadata> metadatas = new ArrayList<Metadata>();
+			metadatas.add(new Metadata("location", "String", "WGS84"));
+			attributes.add(new Attributes("GPSCoord","coords","-8.057205964543307, -34.87112045288086",metadatas));
+			attributes.add(new Attributes("endereco", "String", "Endereco qualquer", null));
+			attributes.add(new Attributes("dataOcorrencia", "String",AdapterOcurrence.df.format(Calendar.getInstance().getTime()),null)); 
+			attributes.add(new Attributes("userId", "String", "1",null)); 
 			
 			entity.setType("Ocurrence");
 			entity.setId(id);

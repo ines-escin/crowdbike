@@ -18,9 +18,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.gson.Gson;
-import com.software.project.entities.Attributes;
-import com.software.project.entities.Entity;
 import com.software.project.entities.Ocorrencia;
+import com.software.project.entities.adapter.Attributes;
+import com.software.project.entities.adapter.Entity;
 
 @Service("PersistenceEntity")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -68,16 +68,20 @@ public class PersistenceEntityWS implements PersistenceEntity {
 	public List<Ocorrencia> getAll() throws Exception {
 		String result = "";
 		try {
+			String uri = "http://148.6.80.19:1026/v1/queryContext";
+			String getAll = "{\"entities\": [{\"type\": \"Ocurrence\",\"isPattern\": \"true\",\"id\": \".*\"}]}";
 			client = new DefaultHttpClient();
-			String uri = "http://148.6.80.19:1026/v1/contextEntities";
-			HttpGet httpget = new HttpGet(uri);
-		    httpget.setHeader("Accept", "application/json");		
-		    httpget.setHeader("Content-type", "application/json");
-
+			
+			HttpPost httppost = new HttpPost(uri);
+		    httppost.setHeader("Accept", "application/json");
+			gson = new Gson();
+			StringEntity entityPost = new StringEntity(getAll);
+			entityPost.setContentType("application/json");
+			httppost.setEntity(entityPost);
 			int executeCount = 0;
 			do {
 				executeCount++;
-				response = client.execute(httpget);
+				response = client.execute(httppost);
 				responseCode = response.getStatusLine().getStatusCode();						
 			} while (executeCount < 5 && responseCode == 408);
 			      rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));

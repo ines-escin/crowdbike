@@ -23,12 +23,16 @@ import org.json.simple.JSONObject;
 
 
 
+
+
+
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.software.project.entities.Attributes;
-import com.software.project.entities.Entity;
 import com.software.project.entities.Ocorrencia;
 import com.software.project.entities.User;
+import com.software.project.entities.adapter.Attributes;
+import com.software.project.entities.adapter.Entity;
+import com.software.project.entities.adapter.Metadata;
 
 public class AdapterOcurrence {
 	
@@ -37,12 +41,18 @@ public class AdapterOcurrence {
     public static Entity toEntity(Ocorrencia o) {
     	Entity e = new Entity();
     	List<Attributes> aList = new ArrayList<Attributes>();
-    	aList.add(new Attributes("title", "String", o.getTitle()));
-    	aList.add(new Attributes("lat", "String", o.getLat()));
-    	aList.add(new Attributes("lng", "String", o.getLng()));
-    	aList.add(new Attributes("endereco", "String", o.getEndereco()));
-    	aList.add(new Attributes("dataOcorrencia", "String", df.format(o.getDataOcorrencia()))); 
-    	aList.add(new Attributes("userId", "String", String.valueOf(o.getUser().getId())));   
+    	aList.add(new Attributes("title", "String", o.getTitle(), null));
+    	
+    	List<Metadata> metadatas = new ArrayList<Metadata>();
+		metadatas.add(new Metadata("location", "String", "WGS84"));
+		String  gpsCoords = o.getLat()+", "+o.getLng();
+		aList.add(new Attributes("GPSCoord","coords",gpsCoords,metadatas));
+		
+    	/*aList.add(new Attributes("lat", "String", o.getLat()));
+    	aList.add(new Attributes("lng", "String", o.getLng()));*/
+    	aList.add(new Attributes("endereco", "String", o.getEndereco(), null));
+    	aList.add(new Attributes("dataOcorrencia", "String", df.format(o.getDataOcorrencia()), null)); 
+    	aList.add(new Attributes("userId", "String", String.valueOf(o.getUser().getId()), null));   
     	
     	e.setId(String.valueOf(o.getIdOcorrencia()));
     	e.setType("Ocurrence");
@@ -83,11 +93,10 @@ public class AdapterOcurrence {
     		case "title":
 				o.setTitle(att.getValue());
 				break;
-			case "lat":
-				o.setLat(att.getValue());
-				break;
-			case "lng":
-				o.setLng(att.getValue());
+			case "GPSCoord":
+				String[] tokensVal = att.getValue().split(",");
+				o.setLat(tokensVal[0].trim());
+				o.setLng(tokensVal[1].trim());
 				break;
 			case "endereco":
 				o.setEndereco(att.getValue());

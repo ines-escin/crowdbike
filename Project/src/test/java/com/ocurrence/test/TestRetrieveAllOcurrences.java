@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 
 import com.google.gson.Gson;
-import com.software.project.entities.Entity;
+import com.software.project.entities.adapter.Entity;
 import com.software.project.service.adapter.AdapterOcurrence;
 
 

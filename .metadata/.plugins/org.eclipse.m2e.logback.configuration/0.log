@@ -778,3 +778,117 @@
 2015-07-11 21:18:20,338 [Worker-80] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
 2015-07-11 21:18:20,341 [Worker-80] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2015-07-11 21:18:20,342 [Worker-80] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 02:28:13,696 [Worker-9] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.maven.ide.eclipse.wtp.WarLifecycleMapping lifecycle mapping for MavenProject: org.springframework.samples.service.service:Project:0.0.1-SNAPSHOT @ C:\Users\helicoptero\GitHub_Ines\Project\pom.xml.
+2015-07-12 02:28:20,536 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 02:28:20,543 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 02:28:20,562 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 02:28:20,562 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 02:28:20,611 [Worker-9] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for Project
+2015-07-12 02:28:20,737 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 02:28:20,738 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources to WEB-INF
+2015-07-12 02:32:31,002 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 02:32:31,030 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 02:32:31,034 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 02:32:31,034 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:16:20,763 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:16:20,804 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 22:16:20,830 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:16:20,830 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:16:20,895 [Worker-4] INFO  o.e.m.w.i.f.ResourceFilteringBuildParticipant - Executing resource filtering for Project
+2015-07-12 22:16:21,086 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:16:21,087 [Worker-4] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources to WEB-INF
+2015-07-12 22:17:05,339 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:17:05,482 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 22:17:05,485 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:17:05,485 [Worker-8] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:17:44,651 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:17:44,653 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 22:17:44,658 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:17:44,659 [Worker-1] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:23:11,734 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:23:11,736 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 22:23:11,758 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:23:11,759 [Worker-5] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:23:24,949 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:23:24,952 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 22:23:24,956 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:23:24,956 [Worker-7] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:25:26,894 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:25:26,895 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 22:25:26,898 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:25:26,899 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:30:07,569 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:30:07,571 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 22:30:07,573 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:30:07,574 [Worker-12] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:30:13,520 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:30:13,522 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 22:30:13,525 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:30:13,525 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:30:23,707 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:30:23,709 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 22:30:23,713 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:30:23,714 [Worker-25] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:30:44,691 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:30:44,692 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 22:30:44,696 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:30:44,696 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:35:26,816 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:35:26,817 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-12 22:35:26,820 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:35:26,821 [Worker-21] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:44:29,594 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:44:29,596 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 22:44:29,598 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:44:29,599 [Worker-22] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 22:48:43,793 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:48:43,793 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-12 22:48:43,795 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 22:48:43,795 [Worker-28] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 23:03:28,717 [pool-2-thread-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded file:/C:/Users/helicoptero/.m2/cglib/cglib-nodep/2.2/cglib-nodep-2.2-sources.jar
+2015-07-12 23:03:28,871 [Worker-37] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2015-07-12 23:03:29,735 [New I/O client worker #1-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repository.primefaces.org/cglib/cglib-nodep/2.2/cglib-nodep-2.2-sources.jar
+2015-07-12 23:03:29,746 [Worker-37] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2015-07-12 23:03:31,002 [New I/O client worker #2-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://download.java.net/maven/2/cglib/cglib-nodep/2.2/cglib-nodep-2.2-sources.jar
+2015-07-12 23:03:31,028 [Worker-37] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2015-07-12 23:03:31,740 [New I/O client worker #3-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://maven.restlet.org/cglib/cglib-nodep/2.2/cglib-nodep-2.2-sources.jar
+2015-07-12 23:03:31,748 [Worker-37] INFO  c.n.h.c.p.n.NettyAsyncHttpProvider - Number of application's worked threads is 8
+2015-07-12 23:03:32,114 [New I/O client worker #4-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloading http://repo.maven.apache.org/maven2/cglib/cglib-nodep/2.2/cglib-nodep-2.2-sources.jar
+2015-07-12 23:03:33,232 [New I/O client worker #4-1] INFO  o.e.m.c.i.e.AbstractTransferListenerAdapter - Downloaded http://repo.maven.apache.org/maven2/cglib/cglib-nodep/2.2/cglib-nodep-2.2-sources.jar
+2015-07-12 23:03:33,635 [Worker-37] INFO  o.e.m.j.internal.DownloadSourcesJob - Downloaded sources for cglib:cglib-nodep:2.2
+2015-07-12 23:03:34,082 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:03:34,083 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2015-07-12 23:03:34,086 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:03:34,086 [Worker-38] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 23:11:24,033 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:11:24,035 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 23:11:24,039 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:11:24,039 [Worker-40] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 23:11:46,383 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:11:46,385 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 23:11:46,389 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:11:46,390 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 23:12:06,140 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:12:06,141 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 23:12:06,153 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:12:06,154 [Worker-45] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 23:12:38,454 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:12:38,455 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 23:12:38,458 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:12:38,458 [Worker-47] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 23:14:53,983 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:14:53,985 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 23:14:53,987 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:14:53,987 [Worker-34] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 23:19:24,285 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:19:24,286 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 23:19:24,289 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:19:24,289 [Worker-44] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 23:19:30,050 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:19:30,051 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 23:19:30,053 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:19:30,053 [Worker-51] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
+2015-07-12 23:19:47,067 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:19:47,069 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 3 resources
+2015-07-12 23:19:47,073 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-07-12 23:19:47,074 [Worker-46] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\helicoptero\GitHub_Ines\Project\src\test\resources
