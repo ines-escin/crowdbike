@@ -1,5 +1,0 @@
-package com.software.project.service.rest.resource;
-
-public interface IResourceEntity {
-
-}

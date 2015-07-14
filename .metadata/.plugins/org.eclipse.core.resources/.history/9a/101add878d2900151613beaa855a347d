@@ -1,0 +1,7 @@
+package br.ufpe.cin.br.adapter.crowdbikemobile;
+
+import java.util.List;
+
+public class Util {
+	
+}

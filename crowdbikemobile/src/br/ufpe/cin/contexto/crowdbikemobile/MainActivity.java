@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -54,6 +55,7 @@ import br.ufpe.cin.contexto.crowdbikemobile.pojo.Tempo;
 import com.example.crowdbikemobile.R;
 import com.google.gson.Gson;
 import com.rabbitmq.client.ConnectionFactory;
+import br.ufpe.cin.br.adapter.crowdbikemobile.AdapterOcurrence;
 
 @SuppressLint("NewApi")
 public class MainActivity extends Activity {
@@ -125,7 +127,7 @@ public class MainActivity extends Activity {
 		//Restaura as preferencias gravadas
         SharedPreferences settings = getSharedPreferences(PREFS_REGISTERED, 0);
         registered =  settings.getString("Registered", "");
-	 //   if (registered != "1") {
+	    /*if (registered != "1") {
 			//Chama a função de registrar ocorrencia
              AsyncRegisterEntity asyncRegisterEntity = new AsyncRegisterEntity(this);
              asyncRegisterEntity.execute(IMEI);
@@ -135,17 +137,17 @@ public class MainActivity extends Activity {
 	         editor.putString("Registered", "1");
 	         //Confirma a gravação dos dados
 	         editor.commit();
-		//}
+		}*/
 		
 		//Conectando ao arduíno
-		Amarino.connect(this, DEVICE_ADDRESS);
+		//Amarino.connect(this, DEVICE_ADDRESS);
 		
 		txtResultado = (TextView)findViewById(R.id.txtResultado);
 
 		inicializarListenerGPS();
 
 		
-		Toast.makeText(this, "O IMEI é: " + IMEI, Toast.LENGTH_LONG).show();
+		//Toast.makeText(this, "O IMEI é: " + IMEI, Toast.LENGTH_LONG).show();
 
 		//Setando a cor de fundo. Padrão: verde
 		setarCorDeFundo(R.color.verde);
@@ -154,7 +156,7 @@ public class MainActivity extends Activity {
         tarefaParalelaTempo();
 		
 		//Executando tarefas paralelas
-	//	tarefasParalelas();
+	 	tarefasParalelas();
 
 		//Necessário para usar Runable na activity?
 		StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -233,8 +235,10 @@ public class MainActivity extends Activity {
 		randomWork.interrupt();
 	}
 
-	public void updateResults(String resultado) {
-		retornoServidor(resultado);
+	public void updateResults(String resultado) throws Exception {
+		//xherman
+		//retornoServidor(resultado);
+		retornoServidorFiware(resultado);
 	}
 
 	public class DoSomethingThread extends Thread {
@@ -247,9 +251,15 @@ public class MainActivity extends Activity {
 			Log.v(TAG, "doing work in Random Number Thread");
 
 			while (true) {
-				
-				publishProgress(requisicao());
-				
+				//xherman
+				//publishProgress(requisicao()); //old code
+				try {
+					publishProgress(fiwareRequest());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				//
 				try {
 					Thread.sleep(DELAY);
 				} catch (InterruptedException e) {
@@ -268,7 +278,12 @@ public class MainActivity extends Activity {
 
 				@Override
 				public void run() {
-					updateResults(resultado);
+					try {
+						updateResults(resultado);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			});
 		}
@@ -352,8 +367,43 @@ public class MainActivity extends Activity {
 
 	}
 	
-	
-	
+	//xherman 
+	public String fiwareRequest() throws Exception{
+		int responseCode = 0;
+		String result = "";
+		String line = "";
+		HttpClient client;
+		HttpResponse response;
+		BufferedReader rd;
+		try {
+			String uri = "http://148.6.80.19:1026/v1/queryContext";
+			String getAll = "{\"entities\": [{\"type\": \"Ocurrence\",\"isPattern\": \"true\",\"id\": \".*\"}],\"restriction\": " +
+					"{\"scopes\": [{\"type\" : \"FIWARE::Location\",\"value\" : {\"circle\": {\"centerLatitude\": \"" +
+					latitudeString +"\",\"centerLongitude\": \"" +longitudeString +"\",\"radius\": \"100\"}}}]}}";
+			client = new DefaultHttpClient();
+			
+			HttpPost httppost = new HttpPost(uri);
+		    httppost.setHeader("Accept", "application/json");
+			StringEntity entityPost = new StringEntity(getAll);
+			entityPost.setContentType("application/json");
+			httppost.setEntity(entityPost);
+			int executeCount = 0;
+			do {
+				executeCount++;
+				response = client.execute(httppost);
+				responseCode = response.getStatusLine().getStatusCode();						
+			} while (executeCount < 5 && responseCode == 408);
+			      rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+			while ((line = rd.readLine()) != null){
+				result += line.trim();
+			}	      
+		} catch (Exception e) {
+			responseCode = 408;
+			e.printStackTrace();
+		}
+		
+		return  result;
+	}
 	
   	/*
 	 * ########################################################################
@@ -374,13 +424,13 @@ public class MainActivity extends Activity {
 		startGenerating();
 		//serviço rest       
 		//fila
-        if (IS_BIKE_MODULE) {
+        /*if (IS_BIKE_MODULE) {
         	try {
     			tarefaParalelaQueue();		
     		} catch (IOException e) {
     			e.printStackTrace();
     		}
-		}
+		}*/
       
 	}
 	
@@ -429,7 +479,7 @@ public class MainActivity extends Activity {
        
 		if(!retorno.equals("false") && !retorno.equals("") && !retorno.equals("OK")){
 			respostaServidor = gson.fromJson(retorno, MsgResponse.class);
-			
+			//xherman
 			if(respostaServidor.getDistance()!=null && Double.valueOf(respostaServidor.getDistance()) <= 30){
 				txtMensagem.setText("rest: " + respostaServidor.getDistance());
 				setarCorDeFundo(R.color.vermelho);
@@ -442,6 +492,48 @@ public class MainActivity extends Activity {
 
 	}
 	
+	//xherman
+	public void retornoServidorFiware(String retorno) throws Exception{
+		Gson gson = new Gson();
+        String noValues = "{\"errorCode\" : {\"code\" : \"404\",\"reasonPhrase\" : \"No context element found\"}}";
+		if(!retorno.equals(noValues) && !retorno.equals("")){
+			String distance = getDistanceLocation(retorno);
+			//xherman
+			if(distance!=null && Double.valueOf(distance) <= 100){
+				txtMensagem.setText("Alerta: " +  String.format("%.1f", Double.parseDouble(distance))+"m");
+				setarCorDeFundo(R.color.vermelho);
+			}
+			Log.v("DIST", distance);
+		}else{
+			txtMensagem.setText("");
+			setarCorDeFundo(R.color.verde); 
+		}
+
+	}
+	//xherman
+	public String getDistanceLocation(String result) throws Exception{
+		List<Entity> listEntity = AdapterOcurrence.parseListEntity(result);
+		double minDistance = 0;
+		double distance = 0;
+		boolean isFirst = true;
+		for (Entity entity : listEntity) {
+			for (Attributes att : entity.getAttributes()) {
+				if (att.getName().equalsIgnoreCase("GPSCoord")) {
+						String[] tokensVal = att.getValue().split(",");
+						distance = distance(tokensVal[0].trim(), tokensVal[1].trim(), latitudeString, longitudeString, 'M');
+						   if (isFirst) {
+						    	minDistance = distance;
+						    	isFirst = false;
+							}else{
+								if (minDistance<distance) {
+									minDistance = distance;
+								}
+							}
+				}
+			}
+		}
+		return String.valueOf(minDistance);
+	}
 	public void retornoFila(String retorno){
 		returnQueue = retorno;
 		Log.v("RETORNO =============>>> DISTANCIA:", retorno);

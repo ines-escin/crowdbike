@@ -13,16 +13,16 @@
 		<item value="false" key="isRegEx"/>
 		<item value="false" key="incremental"/>
 		<item value="false" key="wholeword"/>
-		<item value="OcorrenciaBO" key="selection"/>
+		<item value="Alert" key="selection"/>
 		<list key="findhistory">
+			<item value="alert"/>
+			<item value="color"/>
+			<item value="red "/>
+			<item value="red"/>
+			<item value="retornoServidorFiware"/>
+			<item value="updateResults"/>
 			<item value="ocorrenciaBO"/>
 			<item value="rabbit"/>
-			<item value="xherman"/>
-			<item value="imei"/>
-			<item value="Lat"/>
-			<item value="requisicao"/>
-			<item value="PREFS_NAME"/>
-			<item value="PrefUsuario"/>
 		</list>
 		<list key="replacehistory">
 			<item value="PREFS_REGISTERED"/>
